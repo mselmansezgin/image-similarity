@@ -45,19 +45,6 @@ def collage():
     return response
 
 
-@app.route('/api/v1/categorize', methods=['POST'])
-def categorize():
-    # TODO check request is valid or not
-
-    encoded_image_string = str(json.loads(request.get_data()).get('encodedImage'))
-    img = from_base64_to_img(encoded_image_string, return_type='pil')
-    response_data = default_image_classifier.predict(img)
-    print(response_data)
-    response = jsonify(response_data)
-    response.status_code = 200
-
-    return response
-
 
 @app.errorhandler(Exception)
 def all_exception_handler(error):
